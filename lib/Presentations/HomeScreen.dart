@@ -38,14 +38,35 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
             iconData: Icons.location_on,
           ),
-          RoundIconButton(
-            // messages
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MessagesScreen()));
-            },
-            iconData: FontAwesomeIcons.telegramPlane,
-          ),
+          Stack(
+            children: [
+              RoundIconButton(
+                // messages
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MessagesScreen()));
+                },
+                iconData: FontAwesomeIcons.telegramPlane,
+              ),
+              Positioned(
+                top: 3,
+                right: 3,
+                height: 15,
+                width: 15,
+                child: CircleAvatar(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  child: Text(
+                    '1',
+                    style: TextStyle(fontSize: 9, fontWeight: FontWeight.w300),
+                    textAlign: TextAlign.center,
+                  ),
+                ), //CircularAvatar
+              ),
+            ],
+          )
         ],
       ),
       endDrawer: Drawer(
@@ -326,8 +347,10 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        backgroundColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.red,
-        iconSize: 25,
+        iconSize: 22,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
@@ -342,6 +365,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add_circle,
+              size: 32,
             ),
             label: "Add",
             backgroundColor: Colors.black,
@@ -353,6 +377,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
+//            icon: Container(
+//              margin: EdgeInsets.all(20),
+//              padding: EdgeInsets.all(10),
+//              decoration: BoxDecoration(
+//                  borderRadius: BorderRadius.circular(100),
+//                  border: Border.all(width: 2, color: Colors.white)),
+//              child: Icon(
+//                Icons.cancel,
+//                color: Colors.white,
+//              ),
+//            ),
             label: "You",
             backgroundColor: Colors.black,
           ),
