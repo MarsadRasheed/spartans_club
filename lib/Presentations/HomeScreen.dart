@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:spartansclub/Presentations/AnnouncementManagementScreen.dart';
+import 'package:spartansclub/Presentations/ClubMembersScreen.dart';
+import 'package:spartansclub/Presentations/EventManagementScreen.dart';
+import 'package:spartansclub/Presentations/EventsScreen.dart';
+import 'package:spartansclub/Presentations/GalleryManagementScreen.dart';
 import 'package:spartansclub/Presentations/MessagesScreen.dart';
+import 'package:spartansclub/Presentations/UserManagementScreen.dart';
 import '../Widgets/ClubOfferWidget.dart';
 import '../Widgets/EventsWidget.dart';
 import '../Widgets/NewClubMemberWidget.dart';
@@ -84,6 +90,12 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 5,
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserManagementScreen()));
+              },
               title: Text("User Management"),
               trailing: Icon(
                 Icons.arrow_forward_ios,
@@ -91,6 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EventManagementScreen()));
+              },
               title: Text("Event Management"),
               trailing: Icon(
                 Icons.arrow_forward_ios,
@@ -112,13 +130,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
-              title: Text("Gallary Management"),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GalleryManagementScreen()));
+              },
+              title: Text("Gallery Management"),
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: 15,
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AnnouncementManagementScreen()));
+              },
               title: Text("Announcement Management"),
               trailing: Icon(
                 Icons.arrow_forward_ios,
@@ -158,13 +188,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       hintText: "Browse your club",
                       prefixIcon: Icon(
                         Icons.search,
-                        color: Colors.grey.shade700,
+                        color: Colors.grey.shade600,
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red.shade300),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      hintStyle: TextStyle(color: Colors.grey.shade700),
+                      hintStyle: TextStyle(color: Colors.grey.shade600),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(10),
@@ -223,39 +253,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    "Upcoming Events",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => EventsScreen()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      "Upcoming Events",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                Spacer(),
-                GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "View all",
-                        style: TextStyle(color: Colors.red.shade500),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(4),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            size: 12,
-                            color: Colors.red.shade500,
-                          )),
-                    ],
-                  ),
-                )
-              ],
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "View all",
+                          style: TextStyle(color: Colors.red.shade500),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(4),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 12,
+                              color: Colors.red.shade500,
+                            )),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Container(
               margin: EdgeInsets.only(left: 4),
@@ -282,39 +318,47 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    "New Club Members",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ClubMembersScreen()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      "New Club Members",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                Spacer(),
-                GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "View all",
-                        style: TextStyle(color: Colors.red.shade500),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(4),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            size: 12,
-                            color: Colors.red.shade500,
-                          )),
-                    ],
-                  ),
-                )
-              ],
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "View all",
+                          style: TextStyle(color: Colors.red.shade500),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(4),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 12,
+                              color: Colors.red.shade500,
+                            )),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Container(
               margin: EdgeInsets.only(left: 4),

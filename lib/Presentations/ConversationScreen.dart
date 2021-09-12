@@ -6,7 +6,6 @@ import 'package:spartansclub/Widgets/ReceivedMessageScreen.dart';
 import 'package:spartansclub/Widgets/SentMessageScreen.dart';
 
 class ConversationScreen extends StatelessWidget {
-  ScrollController _scrollController = new ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +45,8 @@ class ConversationScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
               margin: EdgeInsets.all(8),
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
-              height: 60,
+              padding: EdgeInsets.only(left: 10, bottom: 8, top: 8),
+              height: 50,
               width: double.infinity,
               child: Row(
                 children: <Widget>[
