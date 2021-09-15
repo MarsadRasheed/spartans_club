@@ -6,6 +6,9 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="Spartans Club">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC1LaMAHPcQa31XyWZaNqXZvtiWrafL1wA" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
