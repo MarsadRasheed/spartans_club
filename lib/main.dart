@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spartansclub/Presentations/MainScreen.dart';
 import 'Presentations/HomeScreen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF191a20),
         scaffoldBackgroundColor: Color(0xFF191a20),
       ),
-      home: HomeScreen(),
+      home: MainScreen(),
     );
   }
 }

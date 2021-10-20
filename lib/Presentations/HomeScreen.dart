@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spartansclub/Presentations/AnnouncementManagementScreen.dart';
 import 'package:spartansclub/Presentations/ClubMembersScreen.dart';
+import 'package:spartansclub/Presentations/ClubOfferDetailScreen.dart';
 import 'package:spartansclub/Presentations/EventManagementScreen.dart';
 import 'package:spartansclub/Presentations/EventsScreen.dart';
 import 'package:spartansclub/Presentations/GalleryManagementScreen.dart';
 import 'package:spartansclub/Presentations/MessagesScreen.dart';
+import 'package:spartansclub/Presentations/ProfileScreen.dart';
 import 'package:spartansclub/Presentations/UserManagementScreen.dart';
+import 'package:spartansclub/Presentations/UserProfileScreen.dart';
 import '../Widgets/ClubOfferWidget.dart';
 import '../Widgets/EventsWidget.dart';
 import '../Widgets/NewClubMemberWidget.dart';
@@ -19,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool _isAdmin = false;
   var scaffoldKey = GlobalKey<ScaffoldState>();
   var _searchFK = new GlobalKey<FormState>();
   late TextEditingController searchController = TextEditingController();
@@ -46,15 +50,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Stack(
             children: [
-              RoundIconButton(
-                // messages
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MessagesScreen()));
-                },
-                iconData: FontAwesomeIcons.telegramPlane,
+              Align(
+                alignment: Alignment.center,
+                child: RoundIconButton(
+                  // messages
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MessagesScreen()));
+                  },
+                  iconData: FontAwesomeIcons.telegramPlane,
+                ),
               ),
               Positioned(
                 top: 3,
@@ -170,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // search box
             Padding(
               padding: EdgeInsets.all(16),
               child: SizedBox(
@@ -212,6 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            // club offers text
             Padding(
               padding: EdgeInsets.all(16),
               child: Text(
@@ -222,6 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            // club offers list
             Container(
               margin: EdgeInsets.only(left: 4),
               height: 120,
@@ -230,21 +240,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   ClubOfferWidget(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ClubOfferDetailScreen()));
+                    },
                     color1: Colors.lightBlue.shade600,
                     color2: Colors.lightBlue.shade700,
                     iconData: Icons.star,
                     title: "Special",
                   ),
                   ClubOfferWidget(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ClubOfferDetailScreen()));
+                    },
                     color1: Colors.purple.shade600,
                     color2: Colors.purple.shade700,
                     iconData: FontAwesomeIcons.award,
                     title: "Beach Ready",
                   ),
                   ClubOfferWidget(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ClubOfferDetailScreen()));
+                    },
                     color1: Colors.pink.shade600,
                     color2: Colors.pink.shade700,
                     iconData: Icons.emoji_events_outlined,
@@ -253,6 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            // upcoming events text
             GestureDetector(
               onTap: () {
                 Navigator.push(context,
@@ -293,6 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            // upcoming event
             Container(
               margin: EdgeInsets.only(left: 4),
               height: 230,
@@ -318,6 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            // new club members text
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -360,6 +388,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            // new club member list
             Container(
               margin: EdgeInsets.only(left: 4),
               height: 130,
@@ -442,7 +471,15 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             _selectedIndex = index;
             if (_selectedIndex == 4) {
-              scaffoldKey.currentState!.openEndDrawer();
+              if (_isAdmin) {
+                scaffoldKey.currentState!.openEndDrawer();
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+              }
+            } else if (_selectedIndex == 3) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => UserProfileScreen()));
             }
           });
         },

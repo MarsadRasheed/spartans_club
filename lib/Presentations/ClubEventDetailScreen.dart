@@ -57,20 +57,30 @@ class _ClubEventDetailScreenState extends State<ClubEventDetailScreen> {
             return <Widget>[
               SliverAppBar(
                 expandedHeight: 200.0,
-                floating: false,
+                floating: true,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
-                    background: Image.network(
-                  "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2Fyc3xlbnwwfHwwfHw%3D&w=1000&q=80",
-                  fit: BoxFit.cover,
-                )),
+                  centerTitle: true,
+                  title: Text(
+                    "Car Riders Event",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  background: Image.network(
+                    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2Fyc3xlbnwwfHwwfHw%3D&w=1000&q=80",
+                    fit: BoxFit.cover,
+                  ),
+                  stretchModes: [StretchMode.zoomBackground],
+                ),
               ),
               SliverPersistentHeader(
                 delegate: _SliverAppBarDelegate(
                   TabBar(
                     labelColor: Colors.white,
-                    unselectedLabelColor: Colors.grey.shade700,
+                    unselectedLabelColor: Colors.grey.shade800,
                     indicatorColor: Colors.red.shade900,
+                    indicatorWeight: 1,
                     tabs: [
                       Tab(text: "Information"),
                       Tab(text: "Attending"),
@@ -84,94 +94,96 @@ class _ClubEventDetailScreenState extends State<ClubEventDetailScreen> {
           },
           body: TabBarView(
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(left: 16, top: 22),
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.only(left: 16, top: 22),
+                        child: Text(
+                          "Car riders event",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
+                        )),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 16, top: 4, bottom: 4),
+                        child: Text(
+                          "May 30",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        )),
+                    Padding(
+                      padding: EdgeInsets.all(16),
                       child: Text(
-                        "Car riders event",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      )),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(left: 16, top: 4, bottom: 4),
-                      child: Text(
-                        "May 30",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus velit, iaculis eu. Egestas tellus pretium sit faucibus viverra euismod. Libero pellentesque sed eget elit dictum viverra interdum integer orci.",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w300,
                         ),
-                      )),
-                  Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus velit, iaculis eu. Egestas tellus pretium sit faucibus viverra euismod. Libero pellentesque sed eget elit dictum viverra interdum integer orci.",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 200,
-                    margin: EdgeInsets.symmetric(vertical: 8),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: GoogleMap(
-                      onMapCreated: _onMapCreated,
-                      markers: markers,
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(lan, log),
-                        zoom: 15,
+                    Container(
+                      height: 200,
+                      margin: EdgeInsets.symmetric(vertical: 8),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: GoogleMap(
+                        onMapCreated: _onMapCreated,
+                        markers: markers,
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(lan, log),
+                          zoom: 12,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(12),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            flex: 1,
-                            child: Text(
-                              "\$50.00",
-                              style: TextStyle(
-                                  fontSize: 23, fontWeight: FontWeight.bold),
-                            )),
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            margin: EdgeInsets.all(12),
-                            height: 35,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: _color,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                              onPressed: () {
-                                setState(() {
-                                  status = "Attending";
-                                  _color = Colors.grey.shade600;
-                                });
-                              },
-                              child: Text(status),
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Text(
+                                "\$50.00",
+                                style: TextStyle(
+                                    fontSize: 23, fontWeight: FontWeight.bold),
+                              )),
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: EdgeInsets.all(12),
+                              height: 35,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: _color,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                                onPressed: () {
+                                  setState(() {
+                                    status = "Attending";
+                                    _color = Colors.grey.shade600;
+                                  });
+                                },
+                                child: Text(status),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
               Column(
                 children: [
@@ -194,31 +206,33 @@ class _ClubEventDetailScreenState extends State<ClubEventDetailScreen> {
               ),
               Stack(
                 children: [
-                  Column(
-                    children: [
-                      DiscussionMessageWidget(
-                        userName: "Luis Peter",
-                        userImgUrl:
-                            "https://st3.depositphotos.com/12985790/i/600/depositphotos_157947226-stock-photo-man-looking-at-camera.jpg",
-                        message:
-                            "Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!!",
-                        messageTime: "1d ago",
-                      ),
-                      DiscussionMessageWidget(
-                        userImgUrl:
-                            "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-                        message: "Thanks!",
-                        messageTime: "5:36 AM",
-                        userName: "Alexander",
-                      ),
-                      DiscussionMessageWidget(
-                        userImgUrl:
-                            "https://st3.depositphotos.com/12985790/i/600/depositphotos_157947226-stock-photo-man-looking-at-camera.jpg",
-                        message: "Are you interested ?",
-                        messageTime: "3:00 PM",
-                        userName: "George",
-                      ),
-                    ],
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        DiscussionMessageWidget(
+                          userName: "Luis Peter",
+                          userImgUrl:
+                              "https://st3.depositphotos.com/12985790/i/600/depositphotos_157947226-stock-photo-man-looking-at-camera.jpg",
+                          message:
+                              "Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!! Hello everyone, i'm very excited for this event!!",
+                          messageTime: "1d ago",
+                        ),
+                        DiscussionMessageWidget(
+                          userImgUrl:
+                              "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                          message: "Thanks!",
+                          messageTime: "5:36 AM",
+                          userName: "Alexander",
+                        ),
+                        DiscussionMessageWidget(
+                          userImgUrl:
+                              "https://st3.depositphotos.com/12985790/i/600/depositphotos_157947226-stock-photo-man-looking-at-camera.jpg",
+                          message: "Are you interested ?",
+                          messageTime: "3:00 PM",
+                          userName: "George",
+                        ),
+                      ],
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -280,6 +294,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return new Container(
+      color: Color(0xFF191a20),
       child: _tabBar,
     );
   }

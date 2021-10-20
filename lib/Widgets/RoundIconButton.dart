@@ -10,6 +10,7 @@ class RoundIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: RawMaterialButton(
+        visualDensity: VisualDensity(horizontal: 0,vertical: 0),
         onPressed: onPressed,
         child: Icon(iconData),
         constraints: BoxConstraints.tightFor(
